@@ -15,6 +15,7 @@ def dictionary(array)
     elsif value == "and"
       "&"
   else value
-end
+  end
+ end
 end
     
