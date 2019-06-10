@@ -1,21 +1,51 @@
-def dictionary(array)
-  array.collect do |key, value|
-    if value == "hello"
-      "hi"
-    elsif value == "to" || "two" || "too"
-      "2"
-    elsif value == "for" || "four"
-      "4"
-    elsif value == "be"
-      "b"
-    elsif  value == "you"
-      "u"
-    elsif value == "at"
-      "@"
-    elsif value == "and"
-      "&"
-  else value
-  end
- end
+def dictionary
+dictionary = {
+  "too" => "2",
+  "to" => "2",
+  "two" =>"2",
+  "four" => "4",
+  "for" => "4",
+  "be" => "b",
+  "you" => "u",
+  "at" => "@",
+  "and" => "&"
+}
 end
-    
+
+def word_substituter(string) 
+  string.split.collect do |word|
+    if dictionary.keys.include?(word.downcase)
+      word = dictionary[word.downcase]
+    else 
+      word 
+    end 
+  end.join(" ")
+end 
+word_substituter(tweet_one)
+
+def bulk_tweet_shortener(array)
+  array.each do |tweet|
+    puts word_substituter(tweet)
+  end
+end
+
+bulk_tweet_shortener(tweets)
+
+def selective_tweet_shortener(tweet)
+  if tweet.length > 140 
+    word_substituter(tweet)
+  else 
+    tweet 
+  end 
+end 
+selective_tweet_shortener(tweet_three)
+
+def shortened_tweet_truncator(tweet)
+  if word_substituter(tweet).length > 140 
+    word_substituter(tweet)[0..140] + '...'
+  else 
+    tweet 
+  end 
+end 
+
+shortened_tweet_truncator(tweet_three)
